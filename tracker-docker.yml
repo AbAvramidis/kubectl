@@ -24,3 +24,18 @@ spec:
    image: abrams88/tracker-docker-img
    ports:
    - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: mysql-service
+ labels:
+  app: mysql-service
+spec:
+ type: LoadBalancer
+ ports:
+ - port: 80
+   targetPort: 8080
+   protocol: TCP
+ selector:
+  app: mysql-tracker
